@@ -1,6 +1,6 @@
 "use strict";
 
-const API_KEY = "enter_api_key_here";
+const API_KEY = "9e54f1371d244060336ff59180ed5458";
 
 const ICONS = [
   'icons/01d@2x.png',
