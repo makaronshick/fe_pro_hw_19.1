@@ -2,27 +2,8 @@
 
 const API_KEY = "9e54f1371d244060336ff59180ed5458";
 
-const ICONS = [
-  'icons/01d@2x.png',
-  'icons/01n@2x.png',
-  'icons/02d@2x.png',
-  'icons/02n@2x.png',
-  'icons/03d@2x.png',
-  'icons/03n@2x.png',
-  'icons/04d@2x.png',
-  'icons/04n@2x.png',
-  'icons/09d@2x.png',
-  'icons/09n@2x.png',
-  'icons/10d@2x.png',
-  'icons/10n@2x.png',
-  'icons/11d@2x.png',
-  'icons/11n@2x.png',
-  'icons/13d@2x.png',
-  'icons/13n@2x.png',
-  'icons/50d@2x.png',
-  'icons/50n@2x.png'
-];
-
+// PR comment:
+//юзер може і заборонити місцеположення. програма має тоді щось "сказати", а не завалитися)
 function getPosition() {
   return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(
@@ -46,19 +27,20 @@ async function getWeatherData() {
   const response = await fetch(url);
   const data = await response.json();
 
-  const weatherData = {};
-  weatherData.main = data.weather[0].main;
-  weatherData.description = data.weather[0].description;
-  weatherData.icon = data.weather[0].icon;
-  weatherData.country = data.sys.country;
-  weatherData.location = data.name;
-  weatherData.temp = data.main.temp;
-  weatherData.tempLike = data.main.feels_like;
-  weatherData.pressure = data.main.pressure;
-  weatherData.humidity = data.main.humidity;
-  weatherData.wind = data.wind.speed;
-  weatherData.dataCalcTime = data.dt;
-  weatherData.timezone = data.timezone;
+  const weatherData = {
+    main: data.weather[0].main,
+    description: data.weather[0].description,
+    icon: data.weather[0].icon,
+    country: data.sys.country,
+    location: data.name,
+    temp: data.main.temp,
+    tempLike: data.main.feels_like,
+    pressure: data.main.pressure,
+    humidity: data.main.humidity,
+    wind: data.wind.speed,
+    dataCalcTime: data.dt,
+    timezone: data.timezone,
+  };
 
   renderWeatherData(weatherData);
 }
